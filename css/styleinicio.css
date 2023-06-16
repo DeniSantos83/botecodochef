@@ -1,0 +1,79 @@
+body {
+    font-family: 'indie flower';
+    background-color: #0b0b1a;
+   
+}
+
+header {
+    background-image: url('../img/banner1.jpg');
+    height: 100px;
+    background-size: cover;
+    background-position: center;
+    padding: 20px 0;
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+    
+    
+
+}
+
+span {
+    color: #ffa600;
+}
+
+
+
+.navbar {
+    padding: 0;
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff;
+    padding: 5px;
+}
+
+.nav-link:hover {
+    color: #ffa600;
+}
+.navbar-brand {
+    color: #ffffff;
+    font-size: 30px;
+
+}
+
+.navbar-brand:hover{
+    color: #ad7100;
+}
+@media (max-width: 767px) {
+    .logo {
+        margin-right: 0;
+    }
+}
+
+/*Corpo do site*/
+
+.tith2 {
+    text-align: center;
+    color: #ffffff;
+}
+.row {
+    padding: 5px;
+    margin:0;
+}
+
+.card {
+    margin-left: 20px;
+}
+
+.parag {
+    text-align: center;
+    color: rgb(211, 211, 211);
+}
+
+p {
+    color: #afafaf;
+}
