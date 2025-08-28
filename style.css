@@ -88,21 +88,87 @@ header {
   position: relative; /* For logoff button positioning */
 }
 
-.logoff-btn {
+/* Botão Sair (comanda) */
+#logoff-btn2 {
   background: rgba(255, 255, 255, 0.2);
   color: white;
   border: 1px solid white;
   padding: 0.5rem 1rem;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 0.9rem;
-  position: absolute; /* Position relative to header */
-  right: 1rem;
+  margin-left: auto; /* força ele para direita */
 }
 
-.logoff-btn:hover {
+#logoff-btn2:hover {
   background: rgba(255, 255, 255, 0.4);
 }
+/* ---- Mesas ---- */
+.mesas-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 70px); /* ocupa toda a tela menos o header */
+  text-align: center;
+}
+
+.mesas-container h2 {
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+#mesas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1rem;
+  width: 80%;
+  max-width: 600px;
+}
+
+#mesas-grid button {
+  padding: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  background: #ff9800;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+#mesas-grid button:hover {
+  background: #e68900;
+  transform: scale(1.05);
+}
+
+/* ---- Cabeçalho app (mesa selecionada) ---- */
+#app header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#app header h1 {
+  flex: 1;
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+/* Botão Voltar */
+#voltar-mesas {
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: auto; /* mantém à esquerda */
+}
+
+#voltar-mesas:hover {
+  background: #ddd;
+}
+
 
 /* Layout */
 main {

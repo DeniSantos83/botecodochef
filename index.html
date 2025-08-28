@@ -19,19 +19,31 @@
     </div>
   </div>
 
-  <!-- Sistema -->
-  <div id="app" style="display: none;">
+  <!-- Tela de Seleção de Mesas -->
+  <div id="mesa-screen" style="display: none;">
     <header>
       <h1>🍺 Boteco do Chef</h1>
       <button id="logoff-btn" class="logoff-btn">Sair</button>
     </header>
+    <main class="mesas-container">
+      <h2>Selecione a Mesa</h2>
+      <div id="mesas-grid"></div>
+    </main>
+  </div>
+
+  <!-- Sistema -->
+  <div id="app" style="display: none;">
+    <header>
+      
+      <header>
+  <button id="voltar-mesas" class="secondary-btn">← Voltar às Mesas</button>
+  <h1>🍺 Boteco do Chef - Mesa <span id="mesa-atual"></span></h1>
+  <button id="logoff-btn2" class="logoff-btn">Sair</button>
+</header>
+
+    </header>
 
     <main>
-      <section class="comanda-select">
-        <label for="comanda">Número da Mesa:</label>
-        <input type="number" id="comanda" placeholder="Ex: 12">
-      </section>
-
       <section class="produtos">
         <h2>Cardápio</h2>
         <input type="text" id="search-input" placeholder="Buscar produto..." class="search-input">
@@ -67,7 +79,7 @@
               </div>
             </div>
           </div>
-
+          <!--Fim da categoria de  bebidas-->
           <!-- Categoria de Petiscos -->
           <div class="categoria" data-categoria="petiscos">
             <h3>Petiscos</h3>
@@ -121,8 +133,9 @@
                 <button>+</button>
               </div>
             </div>
+            
           </div>
-
+          <!--Fim da categoria de  petiscos-->
           <!-- Categoria de Hambúrgueres e Hotdogs -->
           <div class="categoria" data-categoria="sanduiches">
             <h3>Hambúrgueres e Hotdogs</h3>
@@ -147,6 +160,7 @@
               </div>
             </div>
           </div>
+          <!--Fim da categoria de  Hambúrgueres e Hotdogs-->
         </div>
       </section>
 
