@@ -34,16 +34,19 @@
   <!-- Sistema -->
   <div id="app" style="display: none;">
     <header>
-      
-      <header>
-  <button id="voltar-mesas" class="secondary-btn">← Voltar às Mesas</button>
-  <h1>🍺 Boteco do Chef - Mesa <span id="mesa-atual"></span></h1>
-  <button id="logoff-btn2" class="logoff-btn">Sair</button>
-</header>
-
+      <button id="voltar-mesas" class="secondary-btn">← Voltar às Mesas</button>
+      <h1>🍺 Boteco do Chef - Mesa <span id="mesa-atual"></span></h1>
+      <button id="logoff-btn2" class="logoff-btn">Sair</button>
     </header>
 
     <main>
+      <!-- Coluna lateral de mesas -->
+      <aside class="mesas-sidebar">
+        <h2>Mesas</h2>
+        <div id="mesas-sidebar-list"></div>
+      </aside>
+
+      <!-- Cardápio -->
       <section class="produtos">
         <h2>Cardápio</h2>
         <input type="text" id="search-input" placeholder="Buscar produto..." class="search-input">
@@ -80,6 +83,7 @@
             </div>
           </div>
           <!--Fim da categoria de  bebidas-->
+
           <!-- Categoria de Petiscos -->
           <div class="categoria" data-categoria="petiscos">
             <h3>Petiscos</h3>
@@ -133,9 +137,9 @@
                 <button>+</button>
               </div>
             </div>
-            
           </div>
           <!--Fim da categoria de  petiscos-->
+
           <!-- Categoria de Hambúrgueres e Hotdogs -->
           <div class="categoria" data-categoria="sanduiches">
             <h3>Hambúrgueres e Hotdogs</h3>
@@ -164,6 +168,7 @@
         </div>
       </section>
 
+      <!-- Carrinho -->
       <section class="carrinho">
         <h2>Comanda</h2>
         <ul id="lista-pedidos"></ul>

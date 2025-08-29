@@ -16,6 +16,9 @@ const popupAjuste = document.getElementById("popup-ajuste");
 const popupValorTotal = document.getElementById("popup-valor-total");
 const imprimirComandaBtn = document.getElementById("imprimir-comanda-btn");
 
+// Sidebar
+const mesasSidebarList = document.getElementById("mesas-sidebar-list");
+
 let pedidosPorMesa = JSON.parse(localStorage.getItem("pedidosPorMesa")) || {}; 
 let mesaAtual = null;
 
@@ -33,21 +36,44 @@ loginBtn.addEventListener("click", () => {
   }
 });
 
-// Criar botões das mesas
+// Criar botões das mesas (tela inicial + sidebar)
 for (let i = 1; i <= 15; i++) {
-  const btn = document.createElement("button");
-  btn.textContent = `Mesa ${i}`;
-  btn.addEventListener("click", () => {
-    mesaAtual = i;
-    if (!pedidosPorMesa[mesaAtual]) pedidosPorMesa[mesaAtual] = [];
-    pedidos = pedidosPorMesa[mesaAtual];
-    mesaAtualSpan.textContent = mesaAtual;
+  const btnTela = document.createElement("button");
+  btnTela.textContent = `Mesa ${i}`;
+  btnTela.addEventListener("click", () => {
+    selecionarMesa(i);
     mesaScreen.style.display = "none";
     app.style.display = "block";
-    atualizarCarrinho();
   });
-  mesasGrid.appendChild(btn);
+  mesasGrid.appendChild(btnTela);
+
+  const btnSidebar = document.createElement("button");
+  btnSidebar.textContent = `Mesa ${i}`;
+  btnSidebar.addEventListener("click", () => {
+    selecionarMesa(i);
+    atualizarSidebarAtiva();
+  });
+  mesasSidebarList.appendChild(btnSidebar);
 }
+
+// Selecionar mesa
+function selecionarMesa(numero) {
+  mesaAtual = numero;
+  if (!pedidosPorMesa[mesaAtual]) pedidosPorMesa[mesaAtual] = [];
+  pedidos = pedidosPorMesa[mesaAtual];
+  mesaAtualSpan.textContent = mesaAtual;
+  atualizarCarrinho();
+  atualizarSidebarAtiva();
+}
+
+// Destacar mesa ativa na sidebar
+function atualizarSidebarAtiva() {
+  document.querySelectorAll("#mesas-sidebar-list button").forEach(btn => {
+    const numero = parseInt(btn.textContent.replace("Mesa ", ""), 10);
+    btn.classList.toggle("active", numero === mesaAtual);
+  });
+}
+
 
 // ------------------ SISTEMA DE COMANDA ------------------
 const produtosGrid = document.querySelector(".produtos .categorias-container");

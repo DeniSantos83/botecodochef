@@ -102,6 +102,7 @@ header {
 #logoff-btn2:hover {
   background: rgba(255, 255, 255, 0.4);
 }
+
 /* ---- Mesas ---- */
 .mesas-container {
   display: flex;
@@ -169,15 +170,61 @@ header {
   background: #ddd;
 }
 
-
-/* Layout */
+/* Layout com sidebar */
 main {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 2rem;
-  padding: 2rem;
+  grid-template-columns: 200px 2fr 1fr; /* sidebar | cardápio | carrinho */
+  gap: 1.5rem;
+  padding: 1.5rem;
   background: #c9c7c7;
   min-height: calc(100vh - 70px);
+}
+
+/* Sidebar de mesas */
+.mesas-sidebar {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.mesas-sidebar h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #7c1818;
+  border-bottom: 2px solid #ff9800;
+  padding-bottom: 0.5rem;
+}
+
+#mesas-sidebar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto;
+}
+
+#mesas-sidebar-list button {
+  padding: 0.6rem;
+  border: none;
+  border-radius: 8px;
+  background: #ff9800;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#mesas-sidebar-list button:hover {
+  background: #e68900;
+  transform: scale(1.05);
+}
+
+#mesas-sidebar-list button.active {
+  background: #7c1818;
 }
 
 /* Seletor de comanda */
@@ -258,7 +305,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%; /* Ensure cards in a grid have consistent height */
+  height: 100%;
 }
 
 .produto:hover {
@@ -270,34 +317,32 @@ main {
   margin-bottom: 0.5rem;
   color: #222;
   font-size: 1.1rem;
-  border-bottom: none; /* Override category h3 border */
+  border-bottom: none;
   padding-bottom: 0;
 }
 
 .produto p {
   color: #555;
   font-size: 0.95rem;
-  flex-grow: 1; /* Push button to bottom */
+  flex-grow: 1;
 }
 
 .produto .quantidade-input {
   width: 60px;
   padding: 0.3rem;
-  margin: 0.5rem auto; /* Center input */
+  margin: 0.5rem auto;
   border: 1px solid #ccc;
   border-radius: 5px;
   text-align: center;
   font-size: 0.9rem;
-  -moz-appearance: textfield; /* Hide arrows in Firefox */
+  -moz-appearance: textfield;
 }
 
-/* Hide arrows in Chrome, Safari, Edge */
 .quantidade-input::-webkit-outer-spin-button,
 .quantidade-input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
 
 .produto button {
   margin-top: 0.8rem;
@@ -330,14 +375,14 @@ main {
 .carrinho ul {
   list-style: none;
   margin-bottom: 1rem;
-  flex-grow: 1; /* Allow the list to take available space */
-  overflow-y: auto; /* Make the list scrollable */
-  max-height: 40vh; /* Limit height to prevent overflow */
+  flex-grow: 1;
+  overflow-y: auto;
+  max-height: 40vh;
 }
 
 .carrinho li {
   display: flex;
-  flex-wrap: wrap; /* Allow notes to wrap */
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   padding: 0.6rem 0;
@@ -365,13 +410,13 @@ main {
   margin-top: 5px;
   outline: none;
 }
+
 .carrinho li .item-details .observacao-input:focus {
   border-color: #ff9800;
 }
 
-
 .carrinho li button {
-  background: #ff4d4d; /* Red color for remove button */
+  background: #ff4d4d;
   color: white;
   border: none;
   border-radius: 50%;
@@ -385,7 +430,7 @@ main {
   margin-left: 10px;
   font-size: 0.8rem;
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-  flex-shrink: 0; /* Prevent button from shrinking */
+  flex-shrink: 0;
 }
 
 .carrinho li button:hover {
@@ -417,15 +462,14 @@ main {
   width: 80px;
   text-align: center;
   outline: none;
-  -moz-appearance: textfield; /* Hide arrows in Firefox */
+  -moz-appearance: textfield;
 }
-/* Hide arrows in Chrome, Safari, Edge */
+
 .ajuste-valores input::-webkit-outer-spin-button,
 .ajuste-valores input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
 
 .ajuste-valores button {
   margin-left: 0.5rem;
@@ -572,7 +616,7 @@ main {
 #popup-lista-pedidos {
   list-style: none;
   padding: 0;
-  max-height: 200px; /* Scroll for long lists */
+  max-height: 200px;
   overflow-y: auto;
   border: 1px solid #eee;
   border-radius: 8px;
@@ -585,9 +629,9 @@ main {
   border-bottom: 1px dashed #f0f0f0;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start; /* Align items to the top for multiline content */
+  align-items: flex-start;
   font-size: 1rem;
-  flex-direction: column; /* Stack details */
+  flex-direction: column;
 }
 
 #popup-lista-pedidos li .popup-item-main {
@@ -603,7 +647,6 @@ main {
   width: 100%;
   text-align: left;
 }
-
 
 #popup-lista-pedidos li:last-child {
   border-bottom: none;
@@ -637,7 +680,6 @@ main {
   text-align: center;
   font-size: 0.9rem;
 }
-
 
 /* Responsividade */
 @media (max-width: 768px) {
