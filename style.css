@@ -1,0 +1,866 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Trebuchet MS", sans-serif;
+  transition: all 0.2s ease-in-out;
+}
+
+body {
+  overflow-x: hidden; /* Prevent horizontal scrolling due to animations */
+}
+
+/* Login Screen */
+#login-screen {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #752201, #f7db86);
+}
+
+.login-box {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  text-align: center;
+  width: 320px;
+  animation: fadeIn 0.6s ease;
+}
+
+.login-box h1 {
+  margin-bottom: 1rem;
+  color: #222;
+}
+
+.login-box p {
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+.login-box input {
+  display: block;
+  width: 100%;
+  padding: 0.8rem;
+  margin: 0.6rem 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.login-box input:focus {
+  border-color: #ff9800;
+  box-shadow: 0 0 6px rgba(255, 152, 0, 0.6);
+}
+
+.login-box button {
+  width: 100%;
+  padding: 0.8rem;
+  margin-top: 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #ff9800;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.login-box button:hover {
+  background: #e68900;
+  transform: scale(1.05);
+}
+
+/* Header */
+header {
+  background: #7c1818;
+  color: rgb(255, 255, 255);
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative; /* For logoff button positioning */
+}
+
+/* Botão Sair (comanda) */
+#logoff-btn2 {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: auto; /* força ele para direita */
+}
+
+#logoff-btn2:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* ---- Mesas ---- */
+.mesas-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 70px); /* ocupa toda a tela menos o header */
+  text-align: center;
+}
+
+.mesas-container h2 {
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+#mesas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1rem;
+  width: 80%;
+  max-width: 600px;
+}
+
+#mesas-grid button {
+  padding: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  background: #ff9800;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+#mesas-grid button:hover {
+  background: #e68900;
+  transform: scale(1.05);
+}
+
+/* ---- Cabeçalho app (mesa selecionada) ---- */
+#app header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#app header h1 {
+  flex: 1;
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+/* Botão Voltar */
+#voltar-mesas {
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: auto; /* mantém à esquerda */
+}
+
+#voltar-mesas:hover {
+  background: #ddd;
+}
+
+/* Layout com sidebar */
+main {
+  display: grid;
+  grid-template-columns: 200px 2fr 1fr; /* sidebar | cardápio | carrinho */
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: #c9c7c7;
+  min-height: calc(100vh - 70px);
+}
+
+/* Sidebar de mesas */
+.mesas-sidebar {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.mesas-sidebar h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #7c1818;
+  border-bottom: 2px solid #ff9800;
+  padding-bottom: 0.5rem;
+}
+
+#mesas-sidebar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto;
+}
+
+#mesas-sidebar-list button {
+  padding: 0.6rem;
+  border: none;
+  border-radius: 8px;
+  background: #ff9800;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#mesas-sidebar-list button:hover {
+  background: #e68900;
+  transform: scale(1.05);
+}
+
+#mesas-sidebar-list button.active {
+  background: #7c1818;
+}
+
+/* Seletor de comanda */
+.comanda-select {
+  grid-column: 1 / -1;
+  margin-bottom: 2rem;
+}
+
+.comanda-select label {
+  font-weight: bold;
+}
+
+.comanda-select input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  width: 120px;
+  margin-left: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.comanda-select input:focus {
+  border-color: #ff9800;
+}
+
+/* Produtos */
+.produtos h2, .carrinho h2 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.search-input:focus {
+  border-color: #ff9800;
+  box-shadow: 0 0 6px rgba(255, 152, 0, 0.6);
+}
+
+.categoria {
+  background: white;
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  margin-bottom: 1.5rem;
+}
+
+.categoria h3 {
+  margin-bottom: 1rem;
+  color: #7c1818;
+  font-size: 1.3rem;
+  border-bottom: 2px solid #ff9800;
+  padding-bottom: 0.5rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+}
+
+.produto {
+  background: #f9f9f9;
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.produto:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.produto h3 {
+  margin-bottom: 0.5rem;
+  color: #222;
+  font-size: 1.1rem;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.produto p {
+  color: #555;
+  font-size: 0.95rem;
+  flex-grow: 1;
+}
+
+.produto .quantidade-input {
+  width: 60px;
+  padding: 0.3rem;
+  margin: 0.5rem auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 0.9rem;
+  -moz-appearance: textfield;
+}
+
+.quantidade-input::-webkit-outer-spin-button,
+.quantidade-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.produto button {
+  margin-top: 0.8rem;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  background: #ff9800;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.produto button:hover {
+  background: #e68900;
+  transform: scale(1.05);
+}
+
+/* Carrinho */
+.carrinho {
+  background: white;
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.carrinho ul {
+  list-style: none;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+  overflow-y: auto;
+  max-height: 40vh;
+}
+
+.carrinho li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+}
+
+.carrinho li .item-details {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.carrinho li .item-details span {
+  margin-bottom: 5px;
+}
+
+.carrinho li .item-details .observacao-input {
+  width: 100%;
+  padding: 0.3rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  margin-top: 5px;
+  outline: none;
+}
+
+.carrinho li .item-details .observacao-input:focus {
+  border-color: #ff9800;
+}
+
+.carrinho li button {
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 10px;
+  font-size: 0.8rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  flex-shrink: 0;
+}
+
+.carrinho li button:hover {
+  background: #cc0000;
+  transform: scale(1.1);
+}
+
+.ajuste-valores {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-top: 1rem;
+  border-top: 1px dashed #ccc;
+}
+
+.ajuste-valores label {
+  margin-right: 0.5rem;
+  font-weight: bold;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.ajuste-valores input {
+  flex-grow: 1;
+  padding: 0.4rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  width: 80px;
+  text-align: center;
+  outline: none;
+  -moz-appearance: textfield;
+}
+
+.ajuste-valores input::-webkit-outer-spin-button,
+.ajuste-valores input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.ajuste-valores button {
+  margin-left: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 8px;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.ajuste-valores button:hover {
+  background: #0056b3;
+}
+
+.total {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  text-align: right;
+}
+
+.carrinho-botoes {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+#fechar-conta {
+  flex-grow: 1;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #4caf50;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#fechar-conta:hover {
+  background: #43a047;
+  transform: scale(1.03);
+}
+
+#limpar-comanda-btn {
+  flex-grow: 1;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #dc3545;
+  border-radius: 8px;
+  background: #dc3545;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#limpar-comanda-btn:hover {
+  background: #c82333;
+  transform: scale(1.03);
+}
+
+/* Popup Styles */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.popup-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.popup-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.popup-overlay.active .popup-content {
+  transform: translateY(0);
+}
+
+.close-popup-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #333;
+}
+
+.close-popup-btn:hover {
+  color: red;
+}
+
+.popup-content h2 {
+  margin-bottom: 1.5rem;
+  color: #7c1818;
+  text-align: center;
+  border-bottom: 2px solid #ff9800;
+  padding-bottom: 10px;
+}
+
+#detalhes-comanda {
+  margin-bottom: 1.5rem;
+}
+
+#detalhes-comanda p {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+#detalhes-comanda h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.8rem;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+#popup-lista-pedidos {
+  list-style: none;
+  padding: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+#popup-lista-pedidos li {
+  padding: 0.4rem 0;
+  border-bottom: 1px dashed #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: 1rem;
+  flex-direction: column;
+}
+
+#popup-lista-pedidos li .popup-item-main {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#popup-lista-pedidos li .popup-item-obs {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 5px;
+  width: 100%;
+  text-align: left;
+}
+
+#popup-lista-pedidos li:last-child {
+  border-bottom: none;
+}
+
+#imprimir-comanda-btn {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+  margin-top: 1rem;
+}
+
+#imprimir-comanda-btn:hover {
+  background: #0056b3;
+}
+
+/* Error Message */
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 0.8rem;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  main {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+
+  header {
+    flex-direction: column;
+    padding: 1rem 0.5rem;
+  }
+
+  header h1 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+
+  .logoff-btn {
+    position: static;
+    margin-top: 0.5rem;
+  }
+
+  .comanda-select {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .comanda-select input {
+    margin-top: 0.5rem;
+    margin-left: 0;
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.8rem;
+  }
+
+  .produto {
+    padding: 0.8rem;
+  }
+
+  .produto h3 {
+    font-size: 1rem;
+  }
+
+  .produto p {
+    font-size: 0.85rem;
+  }
+
+  .produto button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .popup-content {
+    padding: 1.5rem;
+  }
+
+  .carrinho-botoes {
+    flex-direction: column;
+  }
+}
+
+/* Animação */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Adicione as seguintes regras no final do seu arquivo style.css */
+
+/* Botão flutuante para mobile */
+.mobile-mesas-btn {
+  display: none; /* Inicia oculto, será exibido em telas menores */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #ff9800;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 999;
+  transition: transform 0.2s ease-in-out;
+}
+
+.mobile-mesas-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Modificações para o popup de mesas */
+#mobile-mesas-popup .popup-content {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+#mobile-mesas-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1rem;
+}
+
+#mobile-mesas-list button {
+  padding: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  background: #ff9800;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+#mobile-mesas-list button:hover {
+  background: #e68900;
+  transform: scale(1.05);
+}
+
+#mobile-mesas-list button.active {
+  background: #7c1818;
+}
+
+/* Responsividade (Modificar a regra existente) */
+@media (max-width: 768px) {
+  /* Esconder a sidebar e exibir o botão flutuante */
+  
+  .mesas-sidebar {
+    display: none;
+  }
+  
+  .mobile-mesas-btn {
+    display: block; /* Exibe o botão flutuante apenas em mobile */
+  }
+
+  /* Ajustar o layout principal para mobile, pois a sidebar sumiu */
+  main {
+    grid-template-columns: 1fr 1fr; /* layout 2 colunas para cardápio e carrinho */
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .produtos {
+    grid-column: 1 / 2;
+  }
+
+  .carrinho {
+    grid-column: 2 / 3;
+  }
+  
+  /* Ajuste no layout se a comanda estiver muito grande */
+  @media (max-width: 500px) {
+    main {
+      grid-template-columns: 1fr; /* Volta para 1 coluna em telas muito pequenas */
+    }
+  }
+   .produtos {
+      grid-column: auto;
+    }
+    .carrinho {
+      grid-column: auto;
+    }
+  }
+  header {
+    flex-direction: column;
+    padding: 1rem 0.5rem;
+  }
+
+  header h1 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+
+  .logoff-btn {
+    position: static;
+    margin-top: 0.5rem;
+  }
